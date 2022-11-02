@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-application\\CNAApp\\CNAApp\\CNAApp.csproj": {}
+    "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-application\\CNAApp\\CNAApp\\CNAApp.csproj": {
+    "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-application\\CNAApp\\CNAApp\\CNAApp.csproj",
+        "projectUniqueName": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj",
         "projectName": "CNAApp",
-        "projectPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-application\\CNAApp\\CNAApp\\CNAApp.csproj",
+        "projectPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj",
         "packagesPath": "C:\\Users\\b019105l\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-application\\CNAApp\\CNAApp\\obj\\",
+        "outputPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

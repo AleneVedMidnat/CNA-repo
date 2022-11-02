@@ -29,5 +29,10 @@ namespace CNAApp
         {
 
         }
+
+        private void SendMessageButton_Click(object sender, RoutedEventHandler e)
+        {
+            if (MessageText.Text == "") ;
+        }
     }
 }
