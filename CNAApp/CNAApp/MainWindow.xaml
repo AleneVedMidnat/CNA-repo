@@ -20,7 +20,7 @@
         <CheckBox x:Name="EnableServerCheck" Content="Enable Server" HorizontalAlignment="Left" Height="21" Margin="510,56,0,0" VerticalAlignment="Top" Width="142"/>
         <CheckBox x:Name="UseEncryptionCheck" Content="Use Encryption" HorizontalAlignment="Left" Height="21" Margin="510,82,0,0" VerticalAlignment="Top" Width="142"/>
         <ScrollViewer x:Name="MessagePanelScroll" Margin="20,49,177,48">
-            <StackPanel x:Name="MessagePanel"/>
+            <TextBlock x:Name="MessagePanel"/>
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Left" Margin="510,118,0,0" TextWrapping="Wrap" Text="Messages from" VerticalAlignment="Top" FontSize="14"/>
 
@@ -28,9 +28,9 @@
         <ScrollViewer x:Name="DMListScroll" Margin="510,142,21,48">
             <StackPanel x:Name="DMList" Margin="510,142,21,47"/>
         </ScrollViewer>
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="20,397,0,0" TextWrapping="Wrap" Text="Message:" VerticalAlignment="Top" Width="116" FontSize="14"/>
-        <TextBox HorizontalAlignment="Left" Margin="88,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="409" FontSize="14" Height="22"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="510,396,0,0" VerticalAlignment="Top" Height="22" Width="142"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="20,397,0,0" TextWrapping="Wrap" Text="Message:" VerticalAlignment="Top" Width="68" FontSize="14"/>
+        <TextBox x:Name="MessageText" HorizontalAlignment="Left" Margin="88,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="409" FontSize="14" Height="22"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="510,396,0,0" VerticalAlignment="Top" Height="22" Width="142" Click="Button_Click"/>
 
 
     </Grid>

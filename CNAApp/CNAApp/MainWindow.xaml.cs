@@ -30,9 +30,28 @@ namespace CNAApp
 
         }
 
-        private void SendMessageButton_Click(object sender, RoutedEventHandler e)
+   
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageText.Text == "") ;
+      if (MessageText.Text == "")
+            {
+                MessageBox.Show("No message in text box!", "Warning");
+            }
+            else
+            {
+                string message = MessageText.Text;
+                MessageText.Text = "";
+                if(NameInput.Text == "")
+                {
+                    MessageBox.Show("Please enter a name in Local Name Textbox!", "Warning");
+                    MessageText.Text = message;
+                }
+                else
+                {
+                    string name = NameInput.Text;
+                    MessagePanel.Text += name + ": " + message;
+                }
+            }
         }
     }
 }
