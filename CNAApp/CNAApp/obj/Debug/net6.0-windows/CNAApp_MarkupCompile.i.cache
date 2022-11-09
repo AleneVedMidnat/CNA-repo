@@ -1,20 +1,20 @@
 ﻿CNAApp
 1.0.0.0
 
-winexe
+exe
 C#
 .cs
-C:\Users\b019105l\Documents\GitHub\CNA-application\CNAApp\CNAApp\obj\Debug\net6.0-windows\
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\
 CNAApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\b019105l\Documents\GitHub\CNA-application\CNAApp\CNAApp\App.xaml
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\CNAApp\App.xaml
 11407045341
 
-5-1160934596
+6-174214070
 194618410957
 MainWindow.xaml;
 
-True
+False
 
