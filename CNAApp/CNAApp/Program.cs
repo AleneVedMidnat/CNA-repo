@@ -15,7 +15,15 @@ namespace CNAApp
         {
             Console.WriteLine("Hello World");
 
-           
+            Client client = new Client();
+            if (client.Connect("127.0.0.1", 4444))
+            {
+                client.Run();
+            }
+            else
+            {
+                Console.WriteLine("failed to connect to the server");
+            }
         }
     }
 
@@ -28,7 +36,7 @@ namespace CNAApp
 
         public Client()
         {
-            TcpClient tcpClient = new TcpClient();
+            tcpClient = new TcpClient();
         }
 
         public bool Connect(string ipAddress, int port)
@@ -55,17 +63,19 @@ namespace CNAApp
 
             while ((userInput = Console.ReadLine()) != null)
             {
-                m_writer.WriteLine();
+                m_writer.WriteLine(userInput);
                 m_writer.Flush();
 
                 ProcessServerResponse();
-                if (userInput == )
+                if (userInput == "Close") { break;  }
             }
+            tcpClient.Close();
         }
 
         private void ProcessServerResponse()
         {
-
+            Console.WriteLine("Server says: " + m_reader.ReadLine());
+            Console.WriteLine();
         }
     }
 }

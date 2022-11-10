@@ -52,7 +52,7 @@ namespace ServerProj
             writer.WriteLine("you have connected to the server");
             writer.Flush();
 
-            while ((recievedMessage == reader.ReadLine()) != null)
+            while ((recievedMessage = reader.ReadLine()) != null)
             {
                 GetReturnMessage(recievedMessage);
 
