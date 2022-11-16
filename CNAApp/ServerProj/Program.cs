@@ -58,6 +58,8 @@ namespace ServerProj
         {
             string recievedMessage;  
             ConnectedClient client = m_clients[index];
+            client.m_writer.WriteLine("Test");
+            client.m_writer.Flush();
 
             while ((recievedMessage = client.Read()) != null)
             {
@@ -81,7 +83,7 @@ namespace ServerProj
         private Socket m_socket;
         private NetworkStream m_stream;
         private StreamReader m_reader;
-        private StreamWriter m_writer;
+        public StreamWriter m_writer;
         private object m_readLock;
         private object m_writeLock;
 
