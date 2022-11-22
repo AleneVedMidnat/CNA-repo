@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
@@ -13,6 +14,7 @@ namespace CNAApp
     {
         static void Main()
         {
+            STAThreadAttribute m_stathread;
             Console.WriteLine("Hello World");
 
             Client client = new Client();
@@ -33,6 +35,7 @@ namespace CNAApp
         NetworkStream m_stream;
         StreamWriter m_writer;
         StreamReader m_reader;
+        MainWindow m_form;
 
         public Client()
         {
@@ -60,22 +63,36 @@ namespace CNAApp
         {
             string userInput;
             ProcessServerResponse();
+            m_form = new MainWindow(this);
+            Thread serverProcessThread = new Thread(ProcessServerResponse);
+            serverProcessThread.Start();
+            m_form.ShowDialog();
 
-            while ((userInput = Console.ReadLine()) != null)
-            {
-                m_writer.WriteLine(userInput);
-                m_writer.Flush();
+            //while ((userInput = Console.ReadLine()) != null)
+            //{
+            //    m_writer.WriteLine(userInput);
+            //    m_writer.Flush();
 
-                ProcessServerResponse();
-                if (userInput == "Close") { break;  }
-            }
+            //    ProcessServerResponse();
+            //    if (userInput == "Close") { break;  }
+            //}
             tcpClient.Close();
         }
 
         private void ProcessServerResponse()
         {
-            Console.WriteLine("Server says: " + m_reader.ReadLine());
-            Console.WriteLine();
+            while (tcpClient.Connected)
+            {
+                m_form.UpdateChatBox("Server says: " + m_reader.ReadLine());
+            }
+        }
+
+        public void SendMessage(string message)
+        {
+            m_writer.WriteLine(message);
+            m_writer.Flush();
         }
     }
+
+    
 }

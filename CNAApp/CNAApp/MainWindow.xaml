@@ -12,25 +12,25 @@
         </Grid.RowDefinitions>
         <Rectangle HorizontalAlignment="Left" Height="337" Margin="20,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="476"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,14,0,0" TextWrapping="Wrap" Text="Server IP" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="IPinput" HorizontalAlignment="Left" Margin="78,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
+        <TextBox x:Name="serverIP" HorizontalAlignment="Left" Margin="78,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="217,14,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="PortInput" HorizontalAlignment="Left" Margin="261,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="63" FontSize="14" Height="22"/>
+        <TextBox x:Name="serverPort" HorizontalAlignment="Left" Margin="261,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="63" FontSize="14" Height="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="424,14,0,0" TextWrapping="Wrap" Text="Local Name" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="NameInput" HorizontalAlignment="Left" Margin="510,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="142" FontSize="14" Height="22"/>
+        <TextBox x:Name="localName" HorizontalAlignment="Left" Margin="510,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="142" FontSize="14" Height="22"/>
         <CheckBox x:Name="EnableServerCheck" Content="Enable Server" HorizontalAlignment="Left" Height="21" Margin="510,56,0,0" VerticalAlignment="Top" Width="142"/>
-        <CheckBox x:Name="UseEncryptionCheck" Content="Use Encryption" HorizontalAlignment="Left" Height="21" Margin="510,82,0,0" VerticalAlignment="Top" Width="142"/>
+        <CheckBox x:Name="UseEncryptionBox" Content="Use Encryption" HorizontalAlignment="Left" Height="21" Margin="510,82,0,0" VerticalAlignment="Top" Width="142"/>
         <ScrollViewer x:Name="MessagePanelScroll" Margin="20,49,177,48">
-            <StackPanel x:Name="MessagePanel"/>
+            <TextBox x:Name="chatBox"/>
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Left" Margin="510,118,0,0" TextWrapping="Wrap" Text="Messages from" VerticalAlignment="Top" FontSize="14"/>
 
         <Rectangle HorizontalAlignment="Left" Height="242" Margin="510,142,0,0" Stroke="Black" VerticalAlignment="Top" Width="142"/>
         <ScrollViewer x:Name="DMListScroll" Margin="510,142,21,48">
-            <StackPanel x:Name="DMList" Margin="510,142,21,47"/>
+            <StackPanel x:Name="userList" Margin="510,142,21,47"/>
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="20,397,0,0" TextWrapping="Wrap" Text="Message:" VerticalAlignment="Top" Width="116" FontSize="14"/>
-        <TextBox HorizontalAlignment="Left" Margin="88,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="409" FontSize="14" Height="22"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="510,396,0,0" VerticalAlignment="Top" Height="22" Width="142"/>
+        <TextBox x:Name="messageText" HorizontalAlignment="Left" Margin="88,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="409" FontSize="14" Height="22"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="510,396,0,0" VerticalAlignment="Top" Height="22" Width="142" Click="Button_Click"/>
 
 
     </Grid>
