@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNAApp", "CNAApp\CNAApp.csproj", "{ACC9215E-AEDD-4D65-9E05-D5762B04DD67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProj", "ServerProj\ServerProj.csproj", "{30B31CC4-B3BB-493E-8060-6203D9E3622B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerProj", "ServerProj\ServerProj.csproj", "{30B31CC4-B3BB-493E-8060-6203D9E3622B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packets", "Packets\Packets.csproj", "{E1117CE0-F298-46B5-B36C-3D4F053DE5CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{30B31CC4-B3BB-493E-8060-6203D9E3622B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30B31CC4-B3BB-493E-8060-6203D9E3622B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30B31CC4-B3BB-493E-8060-6203D9E3622B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1117CE0-F298-46B5-B36C-3D4F053DE5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1117CE0-F298-46B5-B36C-3D4F053DE5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1117CE0-F298-46B5-B36C-3D4F053DE5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1117CE0-F298-46B5-B36C-3D4F053DE5CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

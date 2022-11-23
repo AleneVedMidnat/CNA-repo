@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading.Channels;
 using System.Collections.Concurrent;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ServerProj
 {
@@ -56,10 +57,9 @@ namespace ServerProj
 
         private void ClientMethod(int index)
         {
-            string recievedMessage;  
+            Packets.Packet recievedMessage;  
             ConnectedClient client = m_clients[index];
-            client.m_writer.WriteLine("Test");
-            client.m_writer.Flush();
+
 
             while ((recievedMessage = client.Read()) != null)
             {
@@ -72,7 +72,7 @@ namespace ServerProj
             m_clients.TryRemove(index, out c);
         }
 
-        private string GetReturnMessage(string code)
+        private string GetReturnMessage(Packets.Packet code)
         {
             return "hello";
         }
@@ -82,10 +82,12 @@ namespace ServerProj
     {
         private Socket m_socket;
         private NetworkStream m_stream;
-        private StreamReader m_reader;
-        public StreamWriter m_writer;
+        private BinaryReader m_reader;
+        public BinaryWriter m_writer;
+        BinaryFormatter m_formatter;
         private object m_readLock;
         private object m_writeLock;
+
 
         public ConnectedClient(Socket socket)
         {
@@ -93,8 +95,9 @@ namespace ServerProj
             m_readLock = new object();
             m_socket = socket;
             m_stream = new NetworkStream(socket, true);
-            m_reader = new StreamReader(m_stream, Encoding.UTF8);
-            m_writer = new StreamWriter(m_stream, Encoding.UTF8);
+            m_reader = new BinaryReader(m_stream, Encoding.UTF8);
+            m_writer = new BinaryWriter(m_stream, Encoding.UTF8);
+            m_formatter = new BinaryFormatter();
         }
 
         public void Close()
@@ -105,19 +108,30 @@ namespace ServerProj
             m_socket.Close();
         }
 
-        public string Read()
+        public Packets.Packet Read()
         {
             lock (m_readLock)
             {
-                return m_reader.ReadLine();
+                int numberOfBytes;
+                if ((numberOfBytes = m_reader.ReadInt32()) != -1)
+                {
+                    byte[] buffer = m_reader.ReadBytes(numberOfBytes);
+                    MemoryStream m_memoryStream = new MemoryStream();
+                    return m_formatter.Deserialize(m_memoryStream) as Packets.Packet;
+                }
+                return null;
             }
         }
 
-        public void Send(string message)
+        public void Send(Packets.Packet message)
         {
             lock (m_writeLock)
             {
-                m_writer.WriteLine(message);
+                MemoryStream m_memoryStream = new MemoryStream();
+                m_formatter.Serialize(m_memoryStream, message);
+                byte[] buffer = m_memoryStream.GetBuffer();
+                m_writer.Write(buffer.Length);
+                m_writer.Write(buffer);
                 m_writer.Flush();
             }
 

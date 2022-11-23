@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Packets/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Packets.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Packets.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Packets/1.0.0": {
+      "type": "project",
+      "path": "../Packets/Packets.csproj",
+      "msbuildProject": "../Packets/Packets.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Packets >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\b019105l\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\Packets\\Packets.csproj": {
+              "projectPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\Packets\\Packets.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
