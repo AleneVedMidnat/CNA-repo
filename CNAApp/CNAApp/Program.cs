@@ -12,9 +12,11 @@ namespace CNAApp
 {
     internal class Program
     {
+        [STAThread]
+
         static void Main()
         {
-            STAThreadAttribute m_stathread;
+            
             Console.WriteLine("Hello World");
 
             Client client = new Client();
@@ -61,22 +63,10 @@ namespace CNAApp
 
         public void Run()
         {
-            string userInput;
-            ProcessServerResponse();
             m_form = new MainWindow(this);
-            Thread serverProcessThread = new Thread(ProcessServerResponse);
+            Thread serverProcessThread = new Thread(() => { ProcessServerResponse(); });
             serverProcessThread.Start();
             m_form.ShowDialog();
-
-            //while ((userInput = Console.ReadLine()) != null)
-            //{
-            //    m_writer.WriteLine(userInput);
-            //    m_writer.Flush();
-
-            //    ProcessServerResponse();
-            //    if (userInput == "Close") { break;  }
-            //}
-            tcpClient.Close();
         }
 
         private void ProcessServerResponse()
