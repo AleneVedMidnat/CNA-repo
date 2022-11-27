@@ -28,3 +28,6 @@ C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\refi
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.pdb
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.genruntimeconfig.cache
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ref\ServerProj.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.pdb
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.CopyComplete

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "CNAApp/1.0.0": {
+        "dependencies": {
+          "Packets": "1.0.0"
+        },
         "runtime": {
           "CNAApp.dll": {}
+        }
+      },
+      "Packets/1.0.0": {
+        "runtime": {
+          "Packets.dll": {}
         }
       }
     }
   },
   "libraries": {
     "CNAApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Packets/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

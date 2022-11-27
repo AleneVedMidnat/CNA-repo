@@ -16,9 +16,9 @@
     [Serializable]
     public class ChatMessagePacket : Packet
     {
-        public string m_message;
+        public Packet m_message;
 
-        public ChatMessagePacket(string message)
+        public ChatMessagePacket(Packet message)
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;

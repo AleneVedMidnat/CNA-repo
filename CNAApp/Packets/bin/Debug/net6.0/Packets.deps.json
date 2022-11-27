@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "ServerProj/1.0.0": {
-        "dependencies": {
-          "Packets": "1.0.0"
-        },
-        "runtime": {
-          "ServerProj.dll": {}
-        }
-      },
       "Packets/1.0.0": {
         "runtime": {
           "Packets.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "ServerProj/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Packets/1.0.0": {
       "type": "project",
       "serviceable": false,

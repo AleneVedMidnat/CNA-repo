@@ -40,3 +40,6 @@ C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\CNAApp.pdb
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\CNAApp.genruntimeconfig.cache
 C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\ref\CNAApp.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\CNAApp\bin\Debug\net6.0-windows\Packets.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\CNAApp\bin\Debug\net6.0-windows\Packets.pdb
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\CNAApp\obj\Debug\net6.0-windows\CNAApp.csproj.CopyComplete

@@ -60,6 +60,21 @@ namespace ServerProj
             Packets.Packet recievedMessage;  
             ConnectedClient client = m_clients[index];
 
+            while ((recievedMessage = client.Read()) != null)
+            {
+                switch (recievedMessage.m_packetType)
+                {
+                    case Packets.Packet.PacketType.ChatMessage:
+                        Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
+                        m_clients[index].Send(new Packets.ChatMessagePacket(GetReturnMessage(chatPacket.m_message)));
+                        break;
+                    //case Packets.Packet.PacketType.PrivateMessage:
+                    //    break;
+                    //case Packets.Packet.PacketType.ClientName:
+                    //    break;
+
+                }
+            }
 
             while ((recievedMessage = client.Read()) != null)
             {
@@ -72,9 +87,9 @@ namespace ServerProj
             m_clients.TryRemove(index, out c);
         }
 
-        private string GetReturnMessage(Packets.Packet code)
+        private Packets.Packet GetReturnMessage(Packets.Packet code)
         {
-            return "hello";
+            return null;
         }
     }
 
