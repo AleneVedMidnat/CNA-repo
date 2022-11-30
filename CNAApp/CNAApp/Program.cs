@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CNAApp
 {
@@ -35,8 +36,9 @@ namespace CNAApp
     {
         private TcpClient tcpClient;
         NetworkStream m_stream;
-        StreamWriter m_writer;
-        StreamReader m_reader;
+        BinaryWriter m_writer;
+        BinaryReader m_reader;
+        BinaryFormatter m_formatter;
         MainWindow m_form;
 
         public Client()
@@ -50,8 +52,9 @@ namespace CNAApp
             {
                 tcpClient.Connect(ipAddress, port);
                 m_stream = tcpClient.GetStream();
-                m_reader = new StreamReader(m_stream, Encoding.UTF8);
-                m_writer = new StreamWriter(m_stream, Encoding.UTF8);
+                m_reader = new BinaryReader(m_stream, Encoding.UTF8);
+                m_writer = new BinaryWriter(m_stream, Encoding.UTF8);
+                m_formatter = new BinaryFormatter();
                 return true;
             }
             catch (Exception e)
@@ -73,14 +76,32 @@ namespace CNAApp
         {
             while (tcpClient.Connected)
             {
-                m_form.UpdateChatBox("Server says: " + m_reader.ReadLine());
+                int numberOfBytes ;
+                if ((numberOfBytes = m_reader.ReadInt32()) != -1)
+                {
+                    byte[] buffer = m_reader.ReadBytes(numberOfBytes);
+                    MemoryStream m_memoryStream = new MemoryStream(buffer);
+                    Packets.ChatMessagePacket recievedPacket = m_formatter.Deserialize(m_memoryStream) as Packets.ChatMessagePacket;
+                    m_form.UpdateChatBox(recievedPacket.m_message);
+                }
             }
+            //while (tcpClient.Connected)
+            //{
+            //    m_form.UpdateChatBox("Server says: " + m_reader.ReadLine());
+            //}
         }
 
         public void SendMessage(string message)
         {
-            m_writer.WriteLine(message);
+            Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(message);
+            MemoryStream m_memoryStream = new MemoryStream();
+            m_formatter.Serialize(m_memoryStream, newPacket);
+            byte[] buffer = m_memoryStream.GetBuffer();
+            m_writer.Write(buffer.Length);
+            m_writer.Write(buffer);
             m_writer.Flush();
+            //m_writer.WriteLine(message);
+            //m_writer.Flush();
         }
     }
 

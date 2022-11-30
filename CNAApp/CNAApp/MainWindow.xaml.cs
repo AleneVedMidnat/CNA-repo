@@ -37,6 +37,7 @@ namespace CNAApp
         {
             chatBox.Dispatcher.Invoke(() =>
             {
+                chatBox.Text += messageText.Text + Environment.NewLine;
                 chatBox.Text += message + Environment.NewLine;
                 chatBox.ScrollToEnd();
             });

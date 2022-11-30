@@ -76,20 +76,20 @@ namespace ServerProj
                 }
             }
 
-            while ((recievedMessage = client.Read()) != null)
-            {
-                GetReturnMessage(recievedMessage);
+            //while ((recievedMessage = client.Read()) != null)
+            //{
+            //    GetReturnMessage(recievedMessage);
 
-                client.Send(recievedMessage);
-            }
+            //    client.Send(recievedMessage);
+            //}
             m_clients[index].Close();
             ConnectedClient c;
             m_clients.TryRemove(index, out c);
         }
 
-        private Packets.Packet GetReturnMessage(Packets.Packet code)
+        private string GetReturnMessage(string code)
         {
-            return null;
+            return "hello";
         }
     }
 
@@ -131,7 +131,7 @@ namespace ServerProj
                 if ((numberOfBytes = m_reader.ReadInt32()) != -1)
                 {
                     byte[] buffer = m_reader.ReadBytes(numberOfBytes);
-                    MemoryStream m_memoryStream = new MemoryStream();
+                    MemoryStream m_memoryStream = new MemoryStream(buffer);
                     return m_formatter.Deserialize(m_memoryStream) as Packets.Packet;
                 }
                 return null;

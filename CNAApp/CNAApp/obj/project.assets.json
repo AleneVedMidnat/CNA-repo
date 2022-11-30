@@ -33,9 +33,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj",
-      "projectName": "CNAApp",
-      "projectPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\CNAApp.csproj",
+      "projectUniqueName": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\Client.csproj",
+      "projectName": "Client",
+      "projectPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\Client.csproj",
       "packagesPath": "C:\\Users\\b019105l\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\b019105l\\Documents\\GitHub\\CNA-repo\\CNAApp\\CNAApp\\obj\\",
       "projectStyle": "PackageReference",
