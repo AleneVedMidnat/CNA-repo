@@ -8,11 +8,17 @@ using System.Net;
 using System.Threading.Channels;
 using System.Collections.Concurrent;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 
 namespace ServerProj
 {
     internal class Server
     {
+        RSACryptoServiceProvider m_RSAProvider;
+        RSAParameters m_PublicKey;
+        RSAParameters m_PrivateKey;
+        RSAParameters m_ClientKey;
+
         static void Main()
         {
             Server server = new Server("127.0.0.1", 4444);
@@ -27,6 +33,9 @@ namespace ServerProj
         {
             IPAddress ip = IPAddress.Parse(ipAddress);
             m_TcpListener = new TcpListener(ip, port);
+            m_RSAProvider = new RSACryptoServiceProvider(1024);
+            m_PublicKey = m_RSAProvider.ExportParameters(false);
+            m_PrivateKey = m_RSAProvider.ExportParameters(true);
         }
 
         public void Start()
@@ -90,6 +99,33 @@ namespace ServerProj
         private string GetReturnMessage(string code)
         {
             return "hello";
+        }
+
+        private byte[] Encrypt(byte[] data)
+        {
+            lock (m_RSAProvider) ;
+            m_RSAProvider.ImportParameters(m_ClientKey);
+            return m_RSAProvider.Encrypt(data, true);
+        }
+
+        private byte[] Decrypt(byte[] data)
+        {
+            lock (m_RSAProvider) ;
+            m_RSAProvider.ImportParameters(m_PrivateKey);
+            return m_RSAProvider.Decrypt(data, true);
+        }
+
+        private byte[] EncryptString(string message)
+        {
+            byte[] byteArray;
+            byteArray = Encoding.UTF8.GetBytes(message);
+            return Encrypt(byteArray);
+        }
+
+        private string DecryptString(byte[] message)
+        {
+            message = Decrypt(message);
+            return Encoding.UTF8.GetString(message);
         }
     }
 

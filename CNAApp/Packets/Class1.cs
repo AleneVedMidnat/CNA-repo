@@ -11,6 +11,7 @@
         }
 
         public PacketType m_packetType { get; protected set; }
+        public int m_key;
     }
 
     [Serializable]
@@ -18,10 +19,11 @@
     {
         public string m_message;
 
-        public ChatMessagePacket(string message)
+        public ChatMessagePacket(string message, int key)
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;
+            m_key = key;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 
 namespace CNAApp
 {
@@ -40,10 +41,17 @@ namespace CNAApp
         BinaryReader m_reader;
         BinaryFormatter m_formatter;
         MainWindow m_form;
+        RSACryptoServiceProvider m_RSAProvider;
+        RSAParameters m_PublicKey;
+        RSAParameters m_PrivateKey;
+        RSAParameters m_ClientKey;
 
         public Client()
         {
             tcpClient = new TcpClient();
+            m_RSAProvider = new RSACryptoServiceProvider(1024);
+            m_PublicKey = m_RSAProvider.ExportParameters(false);
+            m_PrivateKey = m_RSAProvider.ExportParameters(true);
         }
 
         public bool Connect(string ipAddress, int port)
@@ -102,6 +110,33 @@ namespace CNAApp
             m_writer.Flush();
             //m_writer.WriteLine(message);
             //m_writer.Flush();
+        }
+
+        private byte[] Encrypt(byte[] data)
+        {
+            lock (m_RSAProvider);
+            m_RSAProvider.ImportParameters(m_ClientKey);
+            return m_RSAProvider.Encrypt(data, true);
+        }
+
+        private byte[] Decrypt(byte[] data)
+        {
+            lock (m_RSAProvider);
+            m_RSAProvider.ImportParameters(m_PrivateKey);
+            return m_RSAProvider.Decrypt(data, true);
+        }
+
+        private byte[] EncryptString(string message)
+        {
+            byte[] byteArray;
+            byteArray = Encoding.UTF8.GetBytes(message);
+            return Encrypt(byteArray);
+        }
+
+        private string DecryptString(byte[] message)
+        {
+            message = Decrypt(message);
+            return Encoding.UTF8.GetString(message);
         }
     }
 
