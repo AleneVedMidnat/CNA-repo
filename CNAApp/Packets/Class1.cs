@@ -1,4 +1,6 @@
-﻿namespace Packets
+﻿using System.Security.Cryptography;
+
+namespace Packets
 {
     [Serializable]
     public class Packet
@@ -11,7 +13,7 @@
         }
 
         public PacketType m_packetType { get; protected set; }
-        public int m_key;
+        public RSAParameters m_key;
     }
 
     [Serializable]
@@ -19,7 +21,7 @@
     {
         public string m_message;
 
-        public ChatMessagePacket(string message, int key)
+        public ChatMessagePacket(string message, RSAParameters key)
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;

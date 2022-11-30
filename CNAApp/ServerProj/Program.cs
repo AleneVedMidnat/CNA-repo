@@ -17,7 +17,7 @@ namespace ServerProj
         RSACryptoServiceProvider m_RSAProvider;
         RSAParameters m_PublicKey;
         RSAParameters m_PrivateKey;
-        RSAParameters m_ClientKey;
+        RSAParameters m_ServerKey;
 
         static void Main()
         {
@@ -75,22 +75,16 @@ namespace ServerProj
                 {
                     case Packets.Packet.PacketType.ChatMessage:
                         Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
-                        m_clients[index].Send(new Packets.ChatMessagePacket(GetReturnMessage(chatPacket.m_message)));
+                        //cannot put the encruted message back because its a different data type 
+                        chatPacket.m_message = EncryptString(chatPacket.m_message);
+                        m_clients[index].Send(new Packets.ChatMessagePacket(GetReturnMessage(chatPacket.m_message), m_PrivateKey));
                         break;
-                    //case Packets.Packet.PacketType.PrivateMessage:
-                    //    break;
-                    //case Packets.Packet.PacketType.ClientName:
-                    //    break;
-
+                    case Packets.Packet.PacketType.PrivateMessage:
+                        break;
+                    case Packets.Packet.PacketType.ClientName:
+                        break;
                 }
             }
-
-            //while ((recievedMessage = client.Read()) != null)
-            //{
-            //    GetReturnMessage(recievedMessage);
-
-            //    client.Send(recievedMessage);
-            //}
             m_clients[index].Close();
             ConnectedClient c;
             m_clients.TryRemove(index, out c);
@@ -104,7 +98,7 @@ namespace ServerProj
         private byte[] Encrypt(byte[] data)
         {
             lock (m_RSAProvider) ;
-            m_RSAProvider.ImportParameters(m_ClientKey);
+            m_RSAProvider.ImportParameters(m_ServerKey);
             return m_RSAProvider.Encrypt(data, true);
         }
 

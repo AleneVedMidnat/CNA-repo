@@ -93,23 +93,17 @@ namespace CNAApp
                     m_form.UpdateChatBox(recievedPacket.m_message);
                 }
             }
-            //while (tcpClient.Connected)
-            //{
-            //    m_form.UpdateChatBox("Server says: " + m_reader.ReadLine());
-            //}
         }
 
         public void SendMessage(string message)
         {
-            Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(message);
+            Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(message, m_PrivateKey);
             MemoryStream m_memoryStream = new MemoryStream();
             m_formatter.Serialize(m_memoryStream, newPacket);
             byte[] buffer = m_memoryStream.GetBuffer();
             m_writer.Write(buffer.Length);
             m_writer.Write(buffer);
             m_writer.Flush();
-            //m_writer.WriteLine(message);
-            //m_writer.Flush();
         }
 
         private byte[] Encrypt(byte[] data)
