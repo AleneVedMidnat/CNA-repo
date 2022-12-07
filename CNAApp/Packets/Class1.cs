@@ -19,9 +19,9 @@ namespace Packets
     [Serializable]
     public class ChatMessagePacket : Packet
     {
-        public string m_message;
+        public byte[] m_message;
 
-        public ChatMessagePacket(string message, RSAParameters key)
+        public ChatMessagePacket(byte[] message, RSAParameters key)
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;

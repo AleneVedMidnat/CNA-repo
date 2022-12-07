@@ -76,7 +76,7 @@ namespace ServerProj
                     case Packets.Packet.PacketType.ChatMessage:
                         Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
                         //cannot put the encruted message back because its a different data type 
-                        chatPacket.m_message = EncryptString(chatPacket.m_message);
+                        //chatPacket.m_message = Encrypt(chatPacket.m_message);
                         m_clients[index].Send(new Packets.ChatMessagePacket(GetReturnMessage(chatPacket.m_message), m_PrivateKey));
                         break;
                     case Packets.Packet.PacketType.PrivateMessage:
@@ -90,9 +90,9 @@ namespace ServerProj
             m_clients.TryRemove(index, out c);
         }
 
-        private string GetReturnMessage(string code)
+        private byte[] GetReturnMessage(byte[] code)
         {
-            return "hello";
+            return EncryptString("hello");
         }
 
         private byte[] Encrypt(byte[] data)

@@ -18,3 +18,16 @@ C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\S
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.AssemblyInfoInputs.cache
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.AssemblyInfo.cs
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.CoreCompileInputs.cache
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.exe
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.deps.json
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.runtimeconfig.json
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.pdb
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.pdb
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.CopyComplete
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\refint\ServerProj.dll
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.pdb
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.genruntimeconfig.cache
+C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ref\ServerProj.dll

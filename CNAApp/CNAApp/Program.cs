@@ -90,12 +90,12 @@ namespace CNAApp
                     byte[] buffer = m_reader.ReadBytes(numberOfBytes);
                     MemoryStream m_memoryStream = new MemoryStream(buffer);
                     Packets.ChatMessagePacket recievedPacket = m_formatter.Deserialize(m_memoryStream) as Packets.ChatMessagePacket;
-                    m_form.UpdateChatBox(recievedPacket.m_message);
+                    m_form.UpdateChatBox(DecryptString(recievedPacket.m_message));
                 }
             }
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(byte[] message)
         {
             Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(message, m_PrivateKey);
             MemoryStream m_memoryStream = new MemoryStream();
