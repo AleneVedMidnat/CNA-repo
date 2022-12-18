@@ -21,11 +21,10 @@ namespace Packets
     {
         public byte[] m_message;
 
-        public ChatMessagePacket(byte[] message, RSAParameters key)
+        public ChatMessagePacket(byte[] message)
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;
-            m_key = key;
         }
     }
 }

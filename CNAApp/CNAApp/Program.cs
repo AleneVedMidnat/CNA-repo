@@ -95,9 +95,9 @@ namespace CNAApp
             }
         }
 
-        public void SendMessage(byte[] message)
+        public void SendMessage(string message)
         {
-            Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(message, m_PrivateKey);
+            Packets.ChatMessagePacket newPacket = new Packets.ChatMessagePacket(EncryptString(message));
             MemoryStream m_memoryStream = new MemoryStream();
             m_formatter.Serialize(m_memoryStream, newPacket);
             byte[] buffer = m_memoryStream.GetBuffer();

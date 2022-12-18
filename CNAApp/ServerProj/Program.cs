@@ -14,10 +14,6 @@ namespace ServerProj
 {
     internal class Server
     {
-        RSACryptoServiceProvider m_RSAProvider;
-        RSAParameters m_PublicKey;
-        RSAParameters m_PrivateKey;
-        RSAParameters m_ServerKey;
 
         static void Main()
         {
@@ -33,9 +29,7 @@ namespace ServerProj
         {
             IPAddress ip = IPAddress.Parse(ipAddress);
             m_TcpListener = new TcpListener(ip, port);
-            m_RSAProvider = new RSACryptoServiceProvider(1024);
-            m_PublicKey = m_RSAProvider.ExportParameters(false);
-            m_PrivateKey = m_RSAProvider.ExportParameters(true);
+            
         }
 
         public void Start()
@@ -59,14 +53,9 @@ namespace ServerProj
             
         }
 
-        public void Stop()
-        {
-            m_TcpListener.Stop();
-        }
-
         private void ClientMethod(int index)
         {
-            Packets.Packet recievedMessage;  
+            Packets.Packet recievedMessage;
             ConnectedClient client = m_clients[index];
 
             while ((recievedMessage = client.Read()) != null)
@@ -77,7 +66,7 @@ namespace ServerProj
                         Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
                         //cannot put the encruted message back because its a different data type 
                         //chatPacket.m_message = Encrypt(chatPacket.m_message);
-                        m_clients[index].Send(new Packets.ChatMessagePacket(GetReturnMessage(chatPacket.m_message), m_PrivateKey));
+                        m_clients[index].Send(new Packets.ChatMessagePacket(m_clients[index].GetReturnMessage(chatPacket.m_message)));
                         break;
                     case Packets.Packet.PacketType.PrivateMessage:
                         break;
@@ -90,37 +79,12 @@ namespace ServerProj
             m_clients.TryRemove(index, out c);
         }
 
-        private byte[] GetReturnMessage(byte[] code)
+        public void Stop()
         {
-            return EncryptString("hello");
+            m_TcpListener.Stop();
         }
 
-        private byte[] Encrypt(byte[] data)
-        {
-            lock (m_RSAProvider) ;
-            m_RSAProvider.ImportParameters(m_ServerKey);
-            return m_RSAProvider.Encrypt(data, true);
-        }
-
-        private byte[] Decrypt(byte[] data)
-        {
-            lock (m_RSAProvider) ;
-            m_RSAProvider.ImportParameters(m_PrivateKey);
-            return m_RSAProvider.Decrypt(data, true);
-        }
-
-        private byte[] EncryptString(string message)
-        {
-            byte[] byteArray;
-            byteArray = Encoding.UTF8.GetBytes(message);
-            return Encrypt(byteArray);
-        }
-
-        private string DecryptString(byte[] message)
-        {
-            message = Decrypt(message);
-            return Encoding.UTF8.GetString(message);
-        }
+        
     }
 
     internal class ConnectedClient 
@@ -132,13 +96,19 @@ namespace ServerProj
         BinaryFormatter m_formatter;
         private object m_readLock;
         private object m_writeLock;
-
+        RSACryptoServiceProvider m_RSAProvider;
+        RSAParameters m_PublicKey;
+        RSAParameters m_PrivateKey;
+        RSAParameters m_ServerKey;
 
         public ConnectedClient(Socket socket)
         {
             m_writeLock = new object();
             m_readLock = new object();
             m_socket = socket;
+            m_RSAProvider = new RSACryptoServiceProvider(1024);
+            m_PublicKey = m_RSAProvider.ExportParameters(false);
+            m_PrivateKey = m_RSAProvider.ExportParameters(true);
             m_stream = new NetworkStream(socket, true);
             m_reader = new BinaryReader(m_stream, Encoding.UTF8);
             m_writer = new BinaryWriter(m_stream, Encoding.UTF8);
@@ -180,6 +150,39 @@ namespace ServerProj
                 m_writer.Flush();
             }
 
+        }
+        
+
+        public byte[] GetReturnMessage(byte[] code)
+        {
+            return EncryptString("hello");
+        }
+
+        private byte[] Encrypt(byte[] data)
+        {
+            lock (m_RSAProvider) ;
+            m_RSAProvider.ImportParameters(m_ServerKey);
+            return m_RSAProvider.Encrypt(data, true);
+        }
+
+        private byte[] Decrypt(byte[] data)
+        {
+            lock (m_RSAProvider) ;
+            m_RSAProvider.ImportParameters(m_PrivateKey);
+            return m_RSAProvider.Decrypt(data, true);
+        }
+
+        private byte[] EncryptString(string message)
+        {
+            byte[] byteArray;
+            byteArray = Encoding.UTF8.GetBytes(message);
+            return Encrypt(byteArray);
+        }
+
+        private string DecryptString(byte[] message)
+        {
+            message = Decrypt(message);
+            return Encoding.UTF8.GetString(message);
         }
     }
 
