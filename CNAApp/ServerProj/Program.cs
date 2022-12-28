@@ -9,6 +9,8 @@ using System.Threading.Channels;
 using System.Collections.Concurrent;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace ServerProj
 {
@@ -64,19 +66,24 @@ namespace ServerProj
                 {
                     case Packets.Packet.PacketType.ChatMessage:
                         Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
-                        //cannot put the encruted message back because its a different data type 
-                        //chatPacket.m_message = Encrypt(chatPacket.m_message);
                         m_clients[index].Send(new Packets.ChatMessagePacket(m_clients[index].GetReturnMessage(chatPacket.m_message)));
                         break;
-                    case Packets.Packet.PacketType.PrivateMessage:
-                        break;
-                    case Packets.Packet.PacketType.ClientName:
+                    case Packets.Packet.PacketType.RSAMessage:
+                        Packets.RSAPacket rsapacket = (Packets.RSAPacket)recievedMessage;
+                        m_clients[index].m_ClientKey = FromXml(rsapacket.m_key);
                         break;
                 }
             }
             m_clients[index].Close();
             ConnectedClient c;
             m_clients.TryRemove(index, out c);
+        }
+
+        public RSAParameters FromXml(string key)
+        {
+            StringReader reader = new StringReader(key);
+            XmlSerializer serializer = new XmlSerializer(typeof(RSAParameters));
+            return (RSAParameters)serializer.Deserialize(reader);
         }
 
         public void Stop()
@@ -98,8 +105,8 @@ namespace ServerProj
         private object m_writeLock;
         RSACryptoServiceProvider m_RSAProvider;
         RSAParameters m_PublicKey;
-        RSAParameters m_PrivateKey;
-        RSAParameters m_ServerKey;
+        public RSAParameters m_PrivateKey;
+        public RSAParameters m_ClientKey;
 
         public ConnectedClient(Socket socket)
         {
@@ -113,6 +120,7 @@ namespace ServerProj
             m_reader = new BinaryReader(m_stream, Encoding.UTF8);
             m_writer = new BinaryWriter(m_stream, Encoding.UTF8);
             m_formatter = new BinaryFormatter();
+            sendRSAkey();
         }
 
         public void Close()
@@ -151,7 +159,17 @@ namespace ServerProj
             }
 
         }
-        
+
+        private void sendRSAkey()
+        {
+            Packets.RSAPacket newPacket = new Packets.RSAPacket(m_PrivateKey);
+            MemoryStream m_memoryStream = new MemoryStream();
+            m_formatter.Serialize(m_memoryStream, newPacket);
+            byte[] buffer = m_memoryStream.GetBuffer();
+            m_writer.Write(buffer.Length);
+            m_writer.Write(buffer);
+            m_writer.Flush();
+        }
 
         public byte[] GetReturnMessage(byte[] code)
         {
@@ -161,14 +179,14 @@ namespace ServerProj
         private byte[] Encrypt(byte[] data)
         {
             lock (m_RSAProvider) ;
-            m_RSAProvider.ImportParameters(m_ServerKey);
+            m_RSAProvider.ImportParameters(m_PublicKey);
             return m_RSAProvider.Encrypt(data, true);
         }
 
         private byte[] Decrypt(byte[] data)
         {
             lock (m_RSAProvider) ;
-            m_RSAProvider.ImportParameters(m_PrivateKey);
+            m_RSAProvider.ImportParameters(m_ClientKey);
             return m_RSAProvider.Decrypt(data, true);
         }
 
@@ -184,6 +202,8 @@ namespace ServerProj
             message = Decrypt(message);
             return Encoding.UTF8.GetString(message);
         }
+
+        
     }
 
 }

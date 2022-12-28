@@ -9,6 +9,11 @@ using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using Packets;
+using System.Reflection;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using System.Windows.Input;
 
 namespace CNAApp
 {
@@ -44,7 +49,7 @@ namespace CNAApp
         RSACryptoServiceProvider m_RSAProvider;
         RSAParameters m_PublicKey;
         RSAParameters m_PrivateKey;
-        RSAParameters m_ClientKey;
+        RSAParameters m_ServerKey;
 
         public Client()
         {
@@ -63,6 +68,7 @@ namespace CNAApp
                 m_reader = new BinaryReader(m_stream, Encoding.UTF8);
                 m_writer = new BinaryWriter(m_stream, Encoding.UTF8);
                 m_formatter = new BinaryFormatter();
+                SendRSAKey();
                 return true;
             }
             catch (Exception e)
@@ -89,8 +95,19 @@ namespace CNAApp
                 {
                     byte[] buffer = m_reader.ReadBytes(numberOfBytes);
                     MemoryStream m_memoryStream = new MemoryStream(buffer);
-                    Packets.ChatMessagePacket recievedPacket = m_formatter.Deserialize(m_memoryStream) as Packets.ChatMessagePacket;
-                    m_form.UpdateChatBox(DecryptString(recievedPacket.m_message));
+
+                    Packets.Packet recievedMessage = m_formatter.Deserialize(m_memoryStream) as Packets.Packet;
+                    switch (recievedMessage.m_packetType)
+                    {
+                        case Packets.Packet.PacketType.ChatMessage:
+                            Packets.ChatMessagePacket chatPacket = (Packets.ChatMessagePacket)recievedMessage;
+                            m_form.UpdateChatBox(DecryptString(chatPacket.m_message));
+                            break;
+                        case Packets.Packet.PacketType.RSAMessage:
+                            Packets.RSAPacket rsapacket = (Packets.RSAPacket)recievedMessage;
+                            m_ServerKey = FromXml(rsapacket.m_key);
+                            break;
+                    }
                 }
             }
         }
@@ -106,17 +123,30 @@ namespace CNAApp
             m_writer.Flush();
         }
 
+        private void SendRSAKey()
+        {
+            Packets.RSAPacket newPacket = new Packets.RSAPacket(m_PrivateKey);
+            MemoryStream m_memoryStream = new MemoryStream();
+            m_formatter.Serialize(m_memoryStream, newPacket);
+            byte[] buffer = m_memoryStream.GetBuffer();
+            m_writer.Write(buffer.Length);
+            m_writer.Write(buffer);
+            m_writer.Flush();
+
+        }
+
+
         private byte[] Encrypt(byte[] data)
         {
             lock (m_RSAProvider);
-            m_RSAProvider.ImportParameters(m_ClientKey);
+            m_RSAProvider.ImportParameters(m_PublicKey);
             return m_RSAProvider.Encrypt(data, true);
         }
 
         private byte[] Decrypt(byte[] data)
         {
             lock (m_RSAProvider);
-            m_RSAProvider.ImportParameters(m_PrivateKey);
+            m_RSAProvider.ImportParameters(m_ServerKey);
             return m_RSAProvider.Decrypt(data, true);
         }
 
@@ -131,6 +161,13 @@ namespace CNAApp
         {
             message = Decrypt(message);
             return Encoding.UTF8.GetString(message);
+        }
+
+        public static RSAParameters FromXml(string key)
+        {
+            StringReader reader = new StringReader(key);
+            XmlSerializer serializer = new XmlSerializer(typeof(RSAParameters));
+            return (RSAParameters)serializer.Deserialize(reader);
         }
     }
 

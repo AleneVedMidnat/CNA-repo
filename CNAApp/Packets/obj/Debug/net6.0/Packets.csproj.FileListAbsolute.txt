@@ -10,3 +10,15 @@ C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Pack
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\refint\Packets.dll
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.pdb
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\ref\Packets.dll
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\bin\Debug\net6.0\Packets.deps.json
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\bin\Debug\net6.0\Packets.dll
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\bin\Debug\net6.0\Packets.pdb
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.csproj.AssemblyReference.cache
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.AssemblyInfoInputs.cache
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.AssemblyInfo.cs
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.csproj.CoreCompileInputs.cache
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.dll
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\refint\Packets.dll
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\Packets.pdb
+C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\Packets\obj\Debug\net6.0\ref\Packets.dll

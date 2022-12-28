@@ -1,4 +1,6 @@
 ﻿using System.Security.Cryptography;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Packets
 {
@@ -8,12 +10,10 @@ namespace Packets
         public enum PacketType
         {
             ChatMessage,
-            PrivateMessage,
-            ClientName
+            RSAMessage
         }
 
         public PacketType m_packetType { get; protected set; }
-        public RSAParameters m_key;
     }
 
     [Serializable]
@@ -25,6 +25,22 @@ namespace Packets
         {
             m_message = message;
             m_packetType = PacketType.ChatMessage;
+        }
+    }
+
+    [Serializable]
+    public class RSAPacket : Packet
+    {
+        public string m_key;
+
+        public RSAPacket(RSAParameters key)
+        {
+            m_packetType = PacketType.RSAMessage;
+
+            StringWriter m_writer = new StringWriter();
+            XmlSerializer serializer = new XmlSerializer(typeof(RSAParameters));
+            serializer.Serialize(m_writer, key);
+            m_key = m_writer.ToString();
         }
     }
 }
