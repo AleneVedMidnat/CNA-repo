@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\b019105l\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\b019105l\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Robyn\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Robyn\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

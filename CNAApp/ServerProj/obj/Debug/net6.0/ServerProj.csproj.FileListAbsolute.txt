@@ -1,18 +1,3 @@
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.exe
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.deps.json
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.runtimeconfig.json
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.dll
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\ServerProj.pdb
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.AssemblyReference.cache
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.AssemblyInfoInputs.cache
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.AssemblyInfo.cs
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.CoreCompileInputs.cache
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.dll
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\refint\ServerProj.dll
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.pdb
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.genruntimeconfig.cache
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ref\ServerProj.dll
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.AssemblyReference.cache
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.AssemblyInfoInputs.cache
@@ -31,6 +16,3 @@ C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\r
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.pdb
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.genruntimeconfig.cache
 C:\Users\b019105l\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ref\ServerProj.dll
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.dll
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\bin\Debug\net6.0\Packets.pdb
-C:\Users\Robyn\Documents\GitHub\CNA-repo\CNAApp\ServerProj\obj\Debug\net6.0\ServerProj.csproj.CopyComplete
