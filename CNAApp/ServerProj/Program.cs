@@ -107,6 +107,8 @@ namespace ServerProj
         RSAParameters m_PublicKey;
         public RSAParameters m_PrivateKey;
         public RSAParameters m_ClientKey;
+        private bool game = false;
+        private int randomnumber;
 
         public ConnectedClient(Socket socket)
         {
@@ -173,7 +175,48 @@ namespace ServerProj
 
         public byte[] GetReturnMessage(byte[] code)
         {
-            return EncryptString("hello");
+            string decryptedmessage = DecryptString(code);
+            int newint = -3;
+            string returnstring = "I have nothing to say to you";
+            if (decryptedmessage == "game")
+            {
+                game = true;
+                
+                returnstring = "guess a number between 1-100. type stop to end the game";
+                Random r = new Random();
+                object syncLock = new object();
+                lock (syncLock)
+                {
+                    randomnumber = r.Next(1,100);
+                }
+            }
+            else if (decryptedmessage == "stop")
+            {
+                game = false;
+                returnstring = "gameended";
+            }
+
+            if (game == true)
+            {
+                Int32.TryParse(decryptedmessage, out newint);
+                if (newint != 0)
+                {
+                    if (newint == randomnumber)
+                    {
+                        returnstring = "CORRECT!";
+                        game = false;
+                    }
+                    else if (newint > randomnumber)
+                    {
+                        returnstring = "smaller";
+                    }
+                    else
+                    {
+                        returnstring = "bigger";
+                    }
+                }
+            }
+            return EncryptString(returnstring);
         }
 
         private byte[] Encrypt(byte[] data)
