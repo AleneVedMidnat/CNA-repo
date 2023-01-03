@@ -216,6 +216,7 @@ namespace ServerProj
                     }
                 }
             }
+            returnstring = "Server: " + returnstring;
             return EncryptString(returnstring);
         }
 
